@@ -20,14 +20,21 @@ import kotlinx.android.synthetic.main.activity_home.*
 class HomeActivity : AppCompatActivity(), ResultCallback<CredentialRequestResult>,
     GoogleApiClient.ConnectionCallbacks,
     GoogleApiClient.OnConnectionFailedListener {
+
     private var credentialRequest: CredentialRequest? = null
 
     var googleApiClient: GoogleApiClient? = null
+    var isRememeber = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+
+         isRememeber= intent.getBooleanExtra("isRemember",false)
+
+
         googleApiClient = GoogleApiClient.Builder(this)
             .addConnectionCallbacks(this)
             .enableAutoManage(this, this)
@@ -38,16 +45,26 @@ class HomeActivity : AppCompatActivity(), ResultCallback<CredentialRequestResult
         }
 
         btndeleteAccount.setOnClickListener {
-            val dialog = AlertDialog.Builder(this)
-                .setMessage("This will sign you out of the account and delete it.")
-                .setPositiveButton("Continue") { dialog, which ->
-                    dialog.dismiss()
-                    requestCredentials()
-                }
-                .setNegativeButton("Cancel") { dialog, which -> dialog.dismiss() }
-                .create()
+            if(isRememeber){
 
-            dialog.show()
+                val dialog = AlertDialog.Builder(this)
+                    .setMessage("This will sign you out of the account and delete it.")
+                    .setPositiveButton("Continue") { dialog, which ->
+                        dialog.dismiss()
+
+                        requestCredentials()
+
+                    }
+                    .setNegativeButton("Cancel") { dialog, which -> dialog.dismiss() }
+                    .create()
+
+                dialog.show()
+
+            }
+            else{
+                logOut()
+            }
+
         }
 
 
@@ -77,7 +94,7 @@ class HomeActivity : AppCompatActivity(), ResultCallback<CredentialRequestResult
                 try {
                     status.startResolutionForResult(this, RC_REQUEST)
                 } catch (e: IntentSender.SendIntentException) {
-                    Toast.makeText(this, "Save failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Request failed", Toast.LENGTH_SHORT).show()
                 }
 
             } else {
