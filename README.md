@@ -20,6 +20,6 @@ Login / Logout with credentails.<br>
 
 <img align="left" src="https://user-images.githubusercontent.com/25722093/75437172-ce95e180-597b-11ea-962e-b076f9fe6e70.png" width=270 height=500>
 
-<img align="right" src="https://user-images.githubusercontent.com/25722093/75437350-13217d00-597c-11ea-8067-970759df41fc.png" width=270 height=500>
+<img align="right" src="https://user-images.githubusercontent.com/25722093/75437710-ad81c080-597c-11ea-818a-a4c7a7b01674.png" width=270 height=500>
 
 <img align="middle" src="https://user-images.githubusercontent.com/25722093/75437232-eb321980-597b-11ea-87f2-eea9a266199d.png" width=270 height=500>
